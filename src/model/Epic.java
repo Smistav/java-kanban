@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 
 public class Epic extends Task {
-    ArrayList<Integer> subtasks = new ArrayList<>();
+    private ArrayList<Integer> subtasks = new ArrayList<>();
 
     public Epic(String title, String description) {
         super(title, description);
@@ -28,5 +28,9 @@ public class Epic extends Task {
 
     public void removeSubtask(Integer subtaskId) {
         this.subtasks.remove(subtaskId);
+    }
+
+    public void clearSubtasks() {
+        this.subtasks.clear();
     }
 }
