@@ -2,17 +2,41 @@ import model.Epic;
 import model.Subtask;
 import model.Task;
 import model.TaskStatus;
+import service.Managers;
 import service.TaskManager;
 
 import java.util.ArrayList;
 
 public class Main {
+    private static void printAllTasks(TaskManager manager) {
+        System.out.println("Задачи:");
+        for (Task task : manager.getTasks()) {
+            System.out.println(task);
+        }
+        System.out.println("Эпики:");
+        for (Task epic : manager.getEpics()) {
+            System.out.println(epic);
+
+            for (Task task : manager.getSubTaskByEpic(epic.getId())) {
+                System.out.println("--> " + task);
+            }
+        }
+        System.out.println("Подзадачи:");
+        for (Task subtask : manager.getSubtasks()) {
+            System.out.println(subtask);
+        }
+
+        System.out.println("История:");
+        for (Task task : manager.getHistory()) {
+            System.out.println(task);
+        }
+    }
 
     public static void main(String[] args) {
         System.out.println("Поехали!");
 
         /* Операции по Task */
-        TaskManager taskManager = new TaskManager();
+        TaskManager taskManager = Managers.getDefault();
         Task task1 = taskManager.createTask(new Task("делать", "что-то"));
         Task task2 = taskManager.createTask(new Task("не делать", "ничего"));
         System.out.println("Создание task1: " + task1);
@@ -72,6 +96,10 @@ public class Main {
 
         ArrayList<Subtask> subtasksEpic = taskManager.getSubTaskByEpic(epicFromManager2.getId());
         System.out.println("Получить все Subtasks Epic2: " + subtasksEpic);
+
+        //
+        printAllTasks(taskManager);
+
     }
 
 }
