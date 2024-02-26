@@ -7,5 +7,7 @@ import java.util.List;
 public interface HistoryManager {
     void add(Task task);
 
-    List<Task> get();
+    void remove(int id);
+
+    List<Task> getHistory();
 }

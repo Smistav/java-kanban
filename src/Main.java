@@ -94,6 +94,9 @@ public class Main {
         Epic epicFromManager2 = taskManager.getEpic(epic2.getId());
         System.out.println("Получить epic2 по id: " + epicFromManager2);
 
+        // проверка повтора вызова задачи для History Manager
+        Subtask subtaskFromManager3 = taskManager.getSubtask(subtask2.getId());
+
         ArrayList<Subtask> subtasksEpic = taskManager.getSubTaskByEpic(epicFromManager2.getId());
         System.out.println("Получить все Subtasks Epic2: " + subtasksEpic);
 
